@@ -6,12 +6,12 @@ class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   void onSubmit(WidgetRef ref, String value) {
-    ref.read(nameProvider.notifier).update((state) => value);
+    ref.read(nameProvider.notifier).updateName(value);
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final name = ref.watch(nameProvider) ?? '';
+    final user = ref.watch(nameProvider);
     return Scaffold(
       appBar: AppBar(title: Text('Provider Example')),
       body: Padding(
@@ -25,7 +25,7 @@ class HomePage extends ConsumerWidget {
               // onFieldSubmitted: (value) => onSubmit(ref, value),
             ),
             SizedBox(height: 20),
-            Center(child: Text(name)),
+            Center(child: Text(user.name)),
           ],
         ),
       ),
